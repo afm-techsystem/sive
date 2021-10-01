@@ -1,0 +1,18 @@
+# PRODUCCION
+version: "3.4"
+
+services:
+
+  web:
+    image: dinotomassini/php7.4.16-mysqli-apache:php7.4-mysqli
+    expose:
+      - 80
+    ports:
+      - 80:80
+    volumes:
+      - ../../backend:/var/www/html
+    environment:
+      MYSQL_HOST: database
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app-Sive.21
+      MYSQL_DB: bd_sive_test

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ESTILOS BOOTSTRAP -->
+  <link rel="stylesheet" href="/assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <!-- ICONOS FONT AWESOME -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- ESTILOS PROPIOS -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <title>S.I.V.E.</title>
+</head>
+
+<body>
+
+  <!-- BARRA NAVEGACION -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top container-fluid d-flex">
+
+  <!-- LOGO E LINK AL HOMEPAGE -->
+  <a class="navbar-brand" href="/">
+    <img src="/assets/images/logo.png" alt="LOGO SIVE" width="30" height="30"
+      class="d-inline-block align-text-top">
+    S.I.V.E.
+  </a>
+
+  <!-- !! El menu aparece desplegado revisarlo -->
+
+  <!-- MENU TIPO HAMBURGUESA (faltan agregar mas y ver con php si ya esta logueado o no para cambiar alunos links)-->
+  <div class="justify-self-end">
+    <!-- EL BOTON QUE MUESTRA U OCULTA EL MENU CUANDO ESTA COLAPSADO -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+      aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- ESTE ES EL MENU EN SI, EL CUAL SE COLAPSARA PARA DISPOSITIVOS MOVILES Y TABLET -->
+    <div id="navbarMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/views/cliente/formularioResgistroCliente.html">Registrarse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/views/login.html">Ingresar</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Categorias</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/views/cliente/carrito.html">Carrito</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/views/cliente/formularioContacto.html">Contacto</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!-- CAMINO PARA NAVEGAR MAS FACILMENTE -->
+<nav class="container p-3" style="--bs-breadcrumb-divider: ' | ';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+    <!-- <li class="breadcrumb-item"><a href="#">Library</a></li> -->
+    <!-- <li class="breadcrumb-item">Data</li> -->
+  </ol>
+</nav>
+
+<h1>Gestion de Productos</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title"><p>Ingreso de productos</p></div>
+          <form action="#" method="post" class="">
+            <div class="form-group mb-2">
+              <input type="text" name="name" id="name" class="form-control" placeholder="Nombre del producto" required autofocus>
+            </div>
+            <div class="form-group mb-2">
+              <input type="text" name="description" id="description" class="form-control" placeholder="Descripcion del producto" required>
+            </div>
+            <div class="form-group mb-2">
+              <label for="price">Precio</label>
+              <input type="number" name="price" id="price" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Ingresar producto</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-7">
+      <table class="table table-strip">
+        <thead>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Stock</th>
+          <th>Precio</th>
+          <!-- <th>???</th> -->
+          <th>Acciones</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <td>Lentes ESPIAS</td>
+            <td>500</td>
+            <td>$15555</td>
+            <!-- <td>???</td> -->
+            <td>
+              <div class="d-flex justify-content-around">
+                <button class="btn btn-info"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<footer class="bg-warning container-fluid">
+  <p class="text-muted text-center">
+    | Grupo <strong>AFM Tech System</strong> | Proyecto S.I.V.E. | 2021 |
+  </p>
+</footer>
+
+<!-- SCRIPTS BOOTSTRAP -->
+<script src="/assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+<!-- SCRIPTS JQUERY -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- SCRIPTS PROPIOS -->
+<script src="/assets/js/main.js"></script>
+</body>
+
+</html>

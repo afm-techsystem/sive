@@ -1,0 +1,43 @@
+# DESARROLLO
+version: "3.4"
+
+services:
+
+  web:
+    image: dinotomassini/php7.4.16-mysqli-apache:php7.4-mysqli
+    # build: 
+      # dockerfile: ./Dockerfile
+    expose:
+      - 80
+    ports:
+      - 8080:80
+    volumes:
+      - ../../backend:/var/www/html
+    environment:
+      MYSQL_HOST: database
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app-Sive.21
+      MYSQL_DB: bd_sive
+#    network: 
+#      - sive
+
+  database:
+    image: mysql:5.7.35
+    ports:
+      - 33306:3306
+    volumes:
+      - ./data/mysql_data_dev:/var/lib/mysql
+    environment:
+      MYSQL_HOST: 172.17.0.3
+      MYSQL_USER: app
+      MYSQL_ROOT_PASSWORD: app-Sive.21
+      MYSQL_DB: bd_sive
+#    network: 
+#      - sive
+
+#  sylius:
+#    network: sive
+
+#networks:
+#  sive:
+#    name: sive

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ESTILOS BOOTSTRAP -->
+  <link rel="stylesheet" href="/assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <!-- ICONOS FONT AWESOME -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- ESTILOS PROPIOS -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+  <title>S.I.V.E.</title>
+</head>
+
+<body>
+  <!-- BARRA NAVEGACION -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top container-fluid d-flex">
+
+    <!-- LOGO E LINK AL HOMEPAGE -->
+    <a class="navbar-brand" href="/">
+      <img src="/assets/images/logo.png" alt="LOGO SIVE" width="30" height="30" class="d-inline-block align-text-top">
+      S.I.V.E.
+    </a>
+
+    <!-- !! El menu aparece desplegado revisarlo -->
+
+    <!-- MENU TIPO HAMBURGUESA (faltan agregar mas y ver con php si ya esta logueado o no para cambiar alunos links)-->
+    <div class="justify-self-end">
+      <!-- EL BOTON QUE MUESTRA U OCULTA EL MENU CUANDO ESTA COLAPSADO -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+        aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- ESTE ES EL MENU EN SI, EL CUAL SE COLAPSARA PARA DISPOSITIVOS MOVILES Y TABLET -->
+      <div id="navbarMenu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/views/cliente/formularioRegistroCliente.html">Registrarse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/views/login.html">Ingresar</a>
+          </li>
+          <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Categorias</a>
+        </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="/views/cliente/carrito.html">Carrito</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/views/cliente/formularioContacto.html">Contacto</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <main class="container p-3">
+    <h1 class="text-center mb-4">Carrito de compras</h1>
+
+    <section class="container">
+
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Articulo</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio Unitario</th>
+            <th scope="col">Precio x Cantidad</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Cerveza IPA 500ml</th>
+            <td>
+              <input type="number" name="cantidad1" id="cantidad1" min="1" value="2" style="width: 60px;">
+            </td>
+            <td>
+              <p>$ 150</p>
+            </td>
+            <td>
+              <p>$ 300</p>
+            </td>
+            <td>
+              <button class="btn btn-danger">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Yerba Baldo 1Kg</th>
+            <td>
+              <!-- poner el id en el name e id para que sea distinto siempre ??? -->
+              <input type="number" name="cantidad2" id="cantidad2" min="1" value="1" style="width: 60px;">
+            </td>
+            <td>
+              <p>$ 189</p>
+            </td>
+            <td>
+              <p>$ 189</p>
+            </td>
+            <td>
+              <button class="btn btn-danger">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="4">
+              <p class="text-end">Total: $ 489</p>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-warning container-fluid">
+    <p class="text-muted text-center">
+      | Grupo <strong>AFM Tech System</strong> | Proyecto S.I.V.E. | 2021 |
+    </p>
+  </footer>
+
+  <!-- SCRIPTS BOOTSTRAP -->
+  <script src="/assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SCRIPTS JQUERY -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!-- SCRIPTS PROPIOS -->
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

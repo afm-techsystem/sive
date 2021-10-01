@@ -1,0 +1,6 @@
+backend/todo.txt
+frontend/todo.txt
+frontend/notes.txt
+infra/ayuda.txt
+infra/dev/data/*
+infra/test/data/*

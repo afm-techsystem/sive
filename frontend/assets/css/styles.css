@@ -1,0 +1,27 @@
+.position-box {
+  position: relative;
+}
+
+.position-price {
+  position: absolute;
+  bottom: 5%;
+}
+
+.position-button {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.card img {
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.justify-self-end {
+  margin-left: auto;
+}
