@@ -43,17 +43,23 @@ class Login {
     if (self::verificarComplejidad($pass) && self::verificarLargo($pass)) {
       $sql = "select * from Usuario where correo=? and password=?";
       $db = ConnectionDB::connectDB();
-      if ($db) {
-        $stmt = $db->prepare($sql);
-        if ($stmt) {
-          $stmt->bind_param("ss", $mail, $pass);
-          $result = $stmt->execute() ? $stmt->get_result() : false;
-          if ($result) {
-            $resultArray = $result->fetch_assoc();
-          }
-        }
-        ConnectionDB::disconnectDB();
+      if (!$db) {
+        return null;
       }
+      //if ($db) {
+      $stmt = $db->prepare($sql);
+      if (!$stmt) {
+        return null;
+      }
+      //if ($stmt) {
+      $stmt->bind_param("ss", $mail, $pass);
+      $result = $stmt->execute() ? $stmt->get_result() : false;
+      if ($result) {
+        $resultArray = $result->fetch_assoc();
+      }
+      //}
+      ConnectionDB::disconnectDB();
+      //}
     }
     return $resultArray;
   }

@@ -5,14 +5,14 @@
 #             A.F.M. Tech System - 2021              #
 ######################################################
 
-readonly GITHUB_REPO="git@github.com:UTU-ISBO/SIVE-PHP.git"
-readonly APP_PATH="$HOME/sive"
+readonly GITHUB_REPO="https://github.com/afm-techsystem/sive.git"
+readonly APP_NAME="sive"
 
-readonly IP_BACK="172.18.0.22"
-readonly HOST_BACK="sive"
-readonly PORT_BACK="80:80"
-readonly VOLUME_BACK=$APP_PATH:/var/www/html/
-readonly IMAGE_BACK="php-mysqli:7.4.16-apache"
+#readonly IP_BACK="172.18.0.22"
+#readonly HOST_BACK="sive"
+#readonly PORT_BACK="80:80"
+#readonly VOLUME_BACK=$HOME/$APP_NAME:/var/www/html/
+#readonly IMAGE_BACK="php-mysqli:7.4.16-apache"
 
 
 #Para generar las pantallas y borrar el archivo temporal donde se guardan las acciones del usuario
@@ -38,17 +38,18 @@ function manejo_opciones_software() {
 # Función para clonar repositorio
 ###################
 function clone_repo() {
-  if [ -d $APP_PATH ]; then
-    cd $APP_PATH
+  if [ -d $HOME/$APP_NAME ]; then
+    cd $HOME/$APP_NAME
     git clone $GITHUB_REPO .
     if [ $? -eq 0 ]; then
       $DIALOG --clear --title "Clonando repositorio" --msgbox "Repositorio clonado con éxito." 0 0
     else
       $DIALOG --clear --title "Clonando repositorio" --msgbox "Ocurrio un error al clonar el repositorio." 0 0
+      exit 1
     fi
     cd -
   else
-    mkdir $APP_PATH
+    mkdir $HOME/$APP_NAME
     # sudo chown -R sysadmin: $APP_PATH
     # sudo chmod -R 644 $APP_PATH
     clone_repo
@@ -59,10 +60,8 @@ function clone_repo() {
 # Función para levantar la aplicacion
 ###################
 function start_app() {
-  docker run --name web -d --ip $IP_BACK --hostname $HOST_BACK -p$PORT_BACK -v $VOLUME_BACK $IMAGE_BACK
-  if [ $? -ne 0 ]; then
-    docker start web
-  fi
+  docker-compose up -f $HOME/$APP_NAME/infra/prod/docker-compose.yml
+#  docker run --name web -d --ip $IP_BACK --hostname $HOST_BACK -p$PORT_BACK -v $VOLUME_BACK $IMAGE_BACK
   if [ $? -eq 0 ]; then
     $DIALOG --clear --title "Iniciando la APP" --msgbox "Aplicación levantada con éxito." 0 0
   else
@@ -75,8 +74,8 @@ function start_app() {
 # Función para actualizar la aplicacion
 ###################
 function update_app() {
-  if [ -d $APP_PATH ]; then
-    cd $APP_PATH
+  if [ -d $HOME/$APP_NAME ]; then
+    cd $HOME/$APP_NAME
     git pull
     if [ $? -eq 0 ]; then
       $DIALOG --clear --title "Actualizando la APP" --msgbox "Aplicación actualizada con éxito." 0 0
@@ -84,8 +83,9 @@ function update_app() {
       $DIALOG --clear --title "Actualizando la APP" --msgbox "Ocurrio un error al actualizar la aplicación." 0 0
       exit 1
     fi
+    cd -
   else
-    $DIALOG --clear --title "Actualizando la APP" --msgbox "No esta creado  el directorio, debe clonar el repositorio primero." 0 0
+    $DIALOG --clear --title "Actualizando la APP" --msgbox "No esta creado el directorio, debe clonar el repositorio primero." 0 0
   fi
   
   # $DIALOG --clear --title "Actualizando la APP" --msgbox "Aplicación ya actualizada." 0 0

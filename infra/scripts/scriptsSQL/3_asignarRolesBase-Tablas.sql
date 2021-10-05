@@ -24,4 +24,3 @@ GRANT SELECT ON bd_sive.Categoria TO CLIENTE;
 GRANT SELECT ON bd_sive.Despacho TO CLIENTE;
 GRANT SELECT ON bd_sive.CentroDePagos TO CLIENTE;
 GRANT SELECT ON bd_sive.MetodoDePago TO CLIENTE;
-

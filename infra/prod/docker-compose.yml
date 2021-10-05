@@ -16,3 +16,5 @@ services:
       MYSQL_USER: app
       MYSQL_PASSWORD: app-Sive.21
       MYSQL_DB: bd_sive_test
+      ENVIRONMENT: prod
+      

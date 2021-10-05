@@ -2,7 +2,7 @@
 
 function devServerUp(){
   echo "Levantando servidor de Desarrollo..."
-  docker-compose -f infra/dev/docker-compose.yml up
+  docker-compose -f infra/dev/docker-compose.yml up -d
 }
 
 function testServerUp(){

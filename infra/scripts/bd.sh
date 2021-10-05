@@ -44,8 +44,6 @@ function manejo_opciones_bd() {
 # Función para crear usuarios de la base de datos
 ###################
 function crear_usuario_bd() {
-  ## SCRIPT PARA LA CREACION DE USUARIOS DE LA BASE DE DATOS(hay que dejar que escriba los nombres?? o crea los nombres que nosotros queremos??)
-  
   # $DIALOG --clear --title "Crear nuevo usuario del sistema" --msgbox "Ingrese los nombres y contraseñas de los usuarios, para terminar deje en blanco el nombre de usuario." 0 0  
   
   # $DIALOG --clear --title "Ingresar usuario" --inputbox "Ingrese el nombre de usuario" 0 0 2> $tempfile
@@ -69,7 +67,7 @@ function crear_usuario_bd() {
   # fi
 
   
-  if mysql -u $DBA_USER -p$DBA_PASS < $PATH_SCRIPTS_SQL/crearUsuarios.sql; then
+  if mysql -u $DBA_USER -p$DBA_PASS < $PATH_SCRIPTS_SQL/1_crearUsuarios.sql; then
     $DIALOG --clear --title "Creación de usuarios en la base de datos" --msgbox "Usuarios creados con éxito." 0 0
   else
     $DIALOG --clear --title "Creación de usuarios en la base de datos" --msgbox "Ocurrio un error al intentar crear los usuarios." 0 0
@@ -81,7 +79,7 @@ function crear_usuario_bd() {
 # Función para crear la base de datos
 ###################
 function crear_bd() {
-  mysql -u $DBA_USER -p$DBA_PASS < $PATH_SCRIPTS_SQL/crearDB.sql
+  mysql -u $DBA_USER -p$DBA_PASS < $PATH_SCRIPTS_SQL/2_crearBase-Tablas.sql
   if [ $? -eq 0 ]; then
     $DIALOG --clear --title "Creación de la base de datos" --msgbox "Base de datos creada con éxito." 0 0
   else
@@ -89,7 +87,7 @@ function crear_bd() {
     exit 1
   fi
   
-  mysql -u $DBA_USER -p$DBA_PASS < $PATH_SCRIPTS_SQL/asignarRolesDB.sql
+  mysql -u $DBA_USER -p$DBA_PASS < $PATH_SCRIPTS_SQL/3_asignarRolesBase-Tablas.sql
   if [ $? -eq 0 ]; then
     $DIALOG --clear --title "Asignación de roles" --msgbox "Asignación de roles exitosa." 0 0
   else
@@ -116,8 +114,8 @@ function backup() {
 # Función para recuperar la base de datos
 ###################
 function restore() {
-  local BACKUP_FILE_NAME=""
   # falta elegir el respaldo
+  local BACKUP_FILE_NAME=""
   $DIALOG --clear --title "Restauración de la base de datos" --fselect $PATH_BACKUP_FILES 0 0 2> $tempfile
   if [ $? -eq 0 ]; then
     BACKUP_FILE_NAME=$(cat $tempfile)
@@ -160,5 +158,4 @@ while $flag; do
     exit 0
   fi
 done
-
 ./main.sh

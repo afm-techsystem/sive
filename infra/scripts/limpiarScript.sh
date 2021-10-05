@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#######################################
+# Script para limpiar los directorios #
+#######################################
+
 sudo deluser sysadmin
 sudo rm -r /home/sysadmin
 

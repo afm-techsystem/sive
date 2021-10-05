@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ESTILOS BOOTSTRAP -->
+  <link rel="stylesheet" href="/assets/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  <!-- ICONOS FONT AWESOME -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <!-- ESTILOS PROPIOS -->
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+  <title>S.I.V.E.</title>
+</head>
+
+<body>
+  <!-- BARRA NAVEGACION -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top container-fluid d-flex">
+
+    <!-- LOGO E LINK AL HOMEPAGE -->
+    <a class="navbar-brand" href="/">
+      <img src="/assets/images/logo.png" alt="LOGO SIVE" width="30" height="30" class="d-inline-block align-text-top">
+      S.I.V.E.
+    </a>
+
+    <!-- !! El menu aparece desplegado revisarlo -->
+
+    <!-- MENU TIPO HAMBURGUESA (faltan agregar mas y ver con php si ya esta logueado o no para cambiar alunos links)-->
+    <div class="justify-self-end">
+      <!-- EL BOTON QUE MUESTRA U OCULTA EL MENU CUANDO ESTA COLAPSADO -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+        aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- ESTE ES EL MENU EN SI, EL CUAL SE COLAPSARA PARA DISPOSITIVOS MOVILES Y TABLET -->
+      <div id="navbarMenu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/cliente/formularioRegistroCliente.html">Registrarse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/login.html">Ingresar</a>
+          </li>
+          <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Categorias</a>
+        </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/cliente/carrito.html">Carrito</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/cliente/formularioContacto.html">Contacto</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <main class="container mb-5">
+    <h1 class="text-center mb-3">Formulario de registro de clientes</h1>
+    <div class="card mx-auto" style="max-width: 36rem;">
+      <form id="signupForm" action="#" method="post" class="m-3">
+        <p>Ingrese los datos mínimos, le recomendamos luego completar todos sus datos personales en su perfil.</p>
+        <!-- <div class="form-group">
+        <label for="name">Nombre:</label>
+        <input type="text" name="name" id="name" placeholder="Ingrese su nombre" class="form-control" autofocus
+          required>
+      </div> -->
+
+              <div class="row">
+        <!-- NOMBRE -->
+        <div class="col">
+          <div class="form-group">
+            <div class="form-floating m-3">
+              <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre" class="form-control"
+                required>
+              <label for="nombre">Nombre *</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- APELLIDO -->
+        <div class="col">
+          <div class="form-group">
+            <div class="form-floating m-3">
+              <input type="text" name="apellido" id="apellido" placeholder="Ingrese su apellido" class="form-control"
+                required>
+              <label for="apellido">Apellido *</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CELULAR -->
+      <!-- <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <div class="form-floating m-3">
+              <input type="text" name="celular" id="celular" placeholder="Ingrese su celular" class="form-control"
+                required>
+              <label for="celular">Celular *</label>
+              <small class="form-text text-muted d-none">Solo se aceptan números.</small>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+      <!-- DOCUMENTO -->
+      <!-- <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <div class="form-floating m-3">
+              <input type="text" name="documento" id="documento" minlength="7" maxlength="8"
+                placeholder="Ingrese su documento" class="form-control" required>
+              <label for="documento">Documento</label>
+              <small class="form-text text-muted d-none">Solo se aceptan números.</small>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- EMAIL -->
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <div class="form-floating m-3">
+              <input type="email" name="mail" id="mail" placeholder="Ingrese su email" class="form-control" required>
+              <label for="mail">Email *</label>
+              <small class="form-text text-muted d-none">No tiene el formato adecuado.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <div class="form-floating m-3">
+              <input type="password" name="pass" id="pass" minlength="6" placeholder="Ingrese su contraseña"
+                class="form-control" required>
+              <label for="pass">Contraseña *</label>
+              <small class="form-text text-muted d-none">Debe contener 1 numero(0-9) + 1 mayuscula + 1 minuscula + 1
+                simbolo + 8-16 caracteres sin espacios.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RETYPE PASSWORD -->
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <div class="form-floating m-3">
+              <input type="password" name="repass" minlength="6" id="repass" placeholder="Confirme su contraseña"
+                class="form-control" required>
+              <label for="repass">Confirme su contraseña *</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group d-flex justify-content-center">
+        <button type="submit" id="btnSubmitSignupPerson" class="btn btn-primary w-50 mt-3">Registrarse</button>
+      </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-warning container-fluid">
+    <p class="text-muted text-center">
+      | Grupo <strong>AFM Tech System</strong> | Proyecto S.I.V.E. | 2021 |
+    </p>
+  </footer>
+
+  <!-- SCRIPTS BOOTSTRAP -->
+  <script src="/assets/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SCRIPTS JQUERY -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!-- SCRIPTS PROPIOS -->
+  <script src="/assets/js/main.js"></script>
+  <script>
+// document.querySelector('#celular').addEventListener('blur', e => soloNumeros(e));
+// document.querySelector('#documento').addEventListener('blur', e => soloNumeros(e));
+document.querySelector('#mail').addEventListener('blur', e => verificarEmail(e));
+document.querySelector('#pass').addEventListener('blur', e => complejidadPassword(e));
+document.querySelector('#signupForm').addEventListener('submit', e => verificarRePass(e));
+
+
+function soloNumeros(e) {
+  const SOLO_NUMEROS = /^[0-9]+$/;
+
+  let texto = e.target.value;
+
+  if (SOLO_NUMEROS.test(texto)) {
+    e.target.parentElement.querySelector('small').classList.add('d-none');
+  } else {
+    e.target.parentElement.querySelector('small').classList.remove('d-none');
+  }
+}
+
+function verificarEmail(e) {
+  const EMAIL_REGEX = /^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\.[a-z]{2,})$/i;
+
+  let mail = e.target.value;
+
+  if (EMAIL_REGEX.test(mail)) {
+    e.target.parentElement.querySelector('small').classList.add('d-none');
+  } else {
+    e.target.parentElement.querySelector('small').classList.remove('d-none');
+  }
+}
+
+function complejidadPassword(e) {
+  const PASS_COMPLEX_REGEX = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,18}$/gm;
+  // debe contener 1 numero(0-9) + 1 mayuscula + 1 minuscula + 1 simbolo + 8-16 caracteres sin espacios
+
+  let pass = e.target.value;
+
+  if (PASS_COMPLEX_REGEX.test(pass)) {
+    e.target.parentElement.querySelector('small').classList.add('d-none');
+  } else {
+    e.target.parentElement.querySelector('small').classList.remove('d-none');
+  }
+}
+
+function verificarRePass(e) {
+  e.preventDefault();
+  pass = e.target.querySelector('#pass').value;
+  repass = e.target.querySelector('#repass').value;
+
+  if (pass == repass) {
+    e.submit();
+  } else {
+    alert('Las contraseñas no coinciden')
+  }
+}
+</script>
+
+</body>
+
+</html>

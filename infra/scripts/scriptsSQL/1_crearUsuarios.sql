@@ -21,5 +21,3 @@ grant VENDEDOR to 'vendedor'@'%';
 grant CLIENTE to 'cliente'@'%';
 
 flush privileges;
-
-

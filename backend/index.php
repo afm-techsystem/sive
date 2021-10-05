@@ -15,15 +15,6 @@ include ROOT_DIR."/views/partials/barraNavegacion.php";
   </form>
 </section>
 
-<!-- CAMINO PARA NAVEGAR MAS FACILMENTE -->
-<nav class="container p-3" style="--bs-breadcrumb-divider: ' | ';" aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Inicio</li>
-    <!-- <li class="breadcrumb-item"><a href="#">Library</a></li> -->
-    <!-- <li class="breadcrumb-item">Data</li> -->
-  </ol>
-</nav>
-
 <section id="vendedor">
   <a href="/views/producto/crudProducto.php">Gestion de productos</a>
 </section>

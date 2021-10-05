@@ -14,10 +14,11 @@ services:
     volumes:
       - ../../backend:/var/www/html
     environment:
-      MYSQL_HOST: database
+      MYSQL_HOST: 172.18.0.2
       MYSQL_USER: app
       MYSQL_PASSWORD: app-Sive.21
       MYSQL_DB: bd_sive
+      ENVIRONMENT: dev
 #    network: 
 #      - sive
 
@@ -28,7 +29,7 @@ services:
     volumes:
       - ./data/mysql_data_dev:/var/lib/mysql
     environment:
-      MYSQL_HOST: 172.17.0.3
+      MYSQL_HOST: 172.18.0.2
       MYSQL_USER: app
       MYSQL_ROOT_PASSWORD: app-Sive.21
       MYSQL_DB: bd_sive

@@ -46,10 +46,10 @@
           <a class="nav-link active" aria-current="page" href="/">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/views/cliente/formularioRegistroCliente.html">Registrarse</a>
+          <a class="nav-link" href="/pages/cliente/formularioRegistroCliente.html">Registrarse</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/views/login.html">Ingresar</a>
+          <a class="nav-link" href="/pages/login.html">Ingresar</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="#">Ofertas</a>
@@ -58,10 +58,10 @@
           <a class="nav-link" href="#">Categorias</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="/views/cliente/carrito.html">Carrito</a>
+          <a class="nav-link" href="/pages/cliente/carrito.html">Carrito</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/views/cliente/formularioContacto.html">Contacto</a>
+          <a class="nav-link" href="/pages/cliente/formularioContacto.html">Contacto</a>
         </li>
       </ul>
     </div>
@@ -121,6 +121,8 @@
               <input type="email" name="mail" id="mail" placeholder="Ingrese su email" class="form-control" autofocus
                 required>
               <label for="mail">Email</label>
+              <small class="form-text text-muted d-none">No tiene el formato adecuado.</small>
+
               <!-- En este input de tipo email, es valido ingresar algo@algo , no es necesario agregar el .algo , esto habria que verlo con JS -->
             </div>
           </div>
@@ -139,7 +141,7 @@
           <!-- INPUT PASS -->
           <div class="form-group">
             <div class="form-floating m-3">
-              <input type="password" name="pass" id="pass" minlength="6" placeholder="Ingrese su contraseña"
+              <input type="password" name="pass" id="pass" minlength="4" placeholder="Ingrese su contraseña"
                 class="form-control" required>
               <label for="pass">Contraseña</label>
             </div>
@@ -200,5 +202,83 @@ function changeWhoLogin() {
     InputEmail.removeAttr('hidden');
     TextWhoLogin.text('Ingrese como empresa -->');
   }
+}
+</script>
+<script>
+$(document).ready(() => {
+  let intentos = 0;
+
+  $('#mail').on('blur', e => {
+    const mail = e.taget.val();
+    if (verificarEmail(mail)) {
+      e.target.parentElement.querySelector('small').classList.add('d-none');
+    } else {
+      e.target.parentElement.querySelector('small').classList.remove('d-none');
+    }
+  });
+
+  $('#loginForm').on('submit', e => {
+    e.preventDefault();
+    const email = $('#mail').val().trim();
+    const pass = $('#pass').val().trim();
+    if (!verificarReglasPassword(pass)) {
+      intentos++;
+      alert('Usuario y/o contraseña inválidas.');
+    }
+
+    enviarFormualrio(email, pass);
+
+  });
+
+});
+
+
+/**
+ * Funcion para verificar las reglas de la contraseña
+ * 
+ * @param string  El password ingresado
+ * @return  Devuelve si la contraseña cumple las reglas o no
+ */
+function verificarReglasPassword(pass) {
+  const PASS_REGEX = /^[A-Za-z]{4,}$/mg;
+  // const PASS_REGEX = /^(?=(?:.*[a-z]){1,})(?=(?:.*[A-Z]){1,})(?=(?:.*[0-9]){1,})(?=(?:.*[*#$%&!]){1,})[A-Za-z0-9*#$%&!]{8,}$/mg;
+  return PASS_REGEX.test(pass);
+}
+
+/**
+ * Funcion para verificar un correo electronico
+ * 
+ * @param string  El email ingresado
+ * @return  Devuelve si el mail es valido o no
+ */
+function verificarEmail(mail) {
+  const EMAIL_REGEX = /^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\.[a-z]{2,})$/i;
+  return EMAIL_REGEX.test(mail);
+}
+
+function enviarFormualrio(email, pass) {
+  let params = {
+    mail: email,
+    password: pass
+  };
+  // Metodo AJAX para enviar un request al servidor
+  $.ajax({
+    url: '/controllers/login.controller.php', // a donde manda el request
+    data: params, // los datos para enviar
+    type: 'POST', // el metodo HTTP para el envio
+    datatype: 'json', // el tipo de datos que espera en la respuesta puede ser html tambien
+  }).done(res => {
+    // lo que ejecuta cuando obtiene la respuesta(res) del servidor
+    alert('Consulta terminada con exito');
+
+  }).fail((xhr, status, errotThrown) => {
+    // lo que ejecuta cuando falla, recibe el request(xhr), el estado(status), y el error(errorThrown)
+    alert('Consulta fallida');
+
+  }).always((xhr, status) => {
+    // lo que ejecuta cuando termina el request, no importa si fue con exito o con falla, recibe el request(xhr) y el estado(state)
+    alert('Consulta terminada, con o sin exito ${state}');
+
+  });
 }
 </script>
