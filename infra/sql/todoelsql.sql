@@ -1,210 +1,244 @@
--- creacion de estructura
-CREATE DATABASE if not exists bd_sive;
+-- CREACION DE ROLES
+CREATE ROLE IF NOT EXISTS DBA, BACKUP, ADMINISTRADOR, VENDEDOR, CLIENTE;
 
-use bd_sive;
+--  dba
+GRANT ALL PRIVILEGES ON *.* TO DBA;
+GRANT ALL PRIVILEGES ON *.* TO BACKUP;
+
+-- CREACION DE USUARIO
+-- create user 'app'@'localhost' identified by 'app-sive.21';
+create user 'dba'@'localhost' identified by 'dba-Sive.21';
+create user 'respaldo'@'localhost' identified by 'respaldo-Sive.21';
+create user 'vendedor'@'%' identified by 'vendedor-Sive.21';
+create user 'cliente'@'%' identified by 'cliente-Sive.21';
+create user 'administrador'@'%' identified by 'administrador-Sive.21';
+
+-- ASIGNACION DE ROLES
+grant DBA to 'dba'@'localhost';
+grant BACKUP to 'respaldo'@'localhost';
+grant ADMINISTRADOR to 'administrador'@'%';
+grant VENDEDOR to 'vendedor'@'%';
+grant CLIENTE to 'cliente'@'%';
+
+flush privileges;
+
+
+CREATE DATABASE IF NOT EXISTS bd_sive;
+
+USE bd_sive;
 
 CREATE TABLE Usuario (
-  correo varchar(40) NOT NULL,
-  password varchar(20) NOT NULL,
-  nombre varchar(20) NOT NULL,
-  apellido varchar(20) NOT NULL,
-  fechaNac date NOT NULL,
-  documento varchar(20) NOT NULL,
-  calle varchar(15) NOT NULL,
-  numero int NOT NULL,
-  esquina varchar(15)	NOT NULL,
+	correo varchar(40) NOT NULL,
+  Password varchar(20) NOT NULL,
+  Nombre varchar(20) NOT NULL,
+  Apellido varchar(20) NOT NULL,
+  Fecha_Nac date NOT NULL,
+  Documento varchar(20) NOT NULL,
+  Calle varchar(15) NOT NULL,
+  Numero int NOT NULL,
+  Esquina varchar(15) NOT NULL,
   PRIMARY KEY(correo),
   UNIQUE(Documento)
 );
 
-CREATE TABLE telefono (
-  correo varchar(40) NOT NULL,
-  telefono varchar(10) NOT NULL,
-  PRIMARY KEY(correo, telefono),
+CREATE TABLE Telefono (
+	correo varchar(40) NOT NULL,
+  Telefono varchar(10) NOT NULL,
+  PRIMARY KEY(correo, Telefono),
   FOREIGN KEY(correo) REFERENCES Usuario(correo)
 );
 
 CREATE TABLE Cliente(
   correo varchar(40) NOT NULL,
-  reputacion int NOT NULL,
+  Reputacion int NOT NULL,
   PRIMARY KEY(correo), 
   FOREIGN KEY(correo) REFERENCES Usuario(correo)
 );
 
-
-
 CREATE TABLE vendedor(
   correo varchar(40) NOT NULL,
-  idVendedor int NOT NULL,
+  IdVendedor int NOT NULL,
   PRIMARY KEY(correo),
-  UNIQUE(idVendedor), 
+  UNIQUE(IdVendedor), 
   FOREIGN KEY(correo) REFERENCES Usuario(correo)
 );
 
 CREATE TABLE Administrador(
   correo varchar(40) NOT NULL,
-  idAdministrador int NOT NULL,
+  IdAdministrador int NOT NULL,
   PRIMARY KEY(correo),
-  UNIQUE(idAdministrador), 
+  UNIQUE(IdAdministrador), 
   FOREIGN KEY(correo) REFERENCES Usuario(correo)
 );
 
 CREATE TABLE Catalogo(
-  idCatalogo int NOT NULL, 
-  nombre varchar(20) NOT NULL,
-  PRIMARY KEY(idCatalogo)
+  IdCatalogo int NOT NULL, 
+  Nombre varchar(20) NOT NULL,
+  PRIMARY KEY(IdCatalogo)
 );
 
 CREATE TABLE Categoria(
-  idCategoria int NOT NULL, 
-  nombre varchar(20) NOT NULL,
-  PRIMARY KEY(idCategoria)
+  IdCategoria int NOT NULL, 
+  Nombre varchar(20) NOT NULL,
+  PRIMARY KEY(IdCategoria)
 );
 
 CREATE TABLE Producto(
-  codProducto int NOT NULL, 
-  nombre varchar(20) NOT NULL, 
-  precio int NOT NULL, 
-  stock int NOT NULL,
-  estadoProducto varchar(10) NOT NULL,
-  procedencia varchar(15) NOT NULL,
-  descripcion varchar(70) NOT NULL, 
-  detalle varchar(60) NOT NULL,
-  PRIMARY KEY(codProducto)
+  CodProducto int NOT NULL, 
+  Nombre varchar(20) NOT NULL, 
+  Precio int NOT NULL, 
+  Stock int NOT NULL,
+  Estado_Producto varchar(10) NOT NULL,
+  Procedencia varchar(15) NOT NULL,
+  Descripcion varchar(70) NOT NULL, 
+  Detalle varchar(60) NOT NULL,
+  PRIMARY KEY(CodProducto)
 );
 
 CREATE TABLE Compras(
-  idOrden int NOT NULL, 
-  fechaCompra date NOT NULL, 
+  IdOrden int NOT NULL, 
+  Fecha_Compra date NOT NULL, 
   pagoAprobado boolean NOT NULL, 
-  total int NOT NULL, 
+  Total int NOT NULL, 
   correo varchar(40) NOT NULL, 
-  codProducto int NOT NULL,
-  PRIMARY KEY(idOrden),
+  CodProducto int NOT NULL,
+  PRIMARY KEY(IdOrden),
   FOREIGN KEY(correo) REFERENCES Cliente(correo),
-  FOREIGN KEY(codProducto) REFERENCES Producto(codProducto)
+  FOREIGN KEY(CodProducto) REFERENCES Producto(CodProducto)
 );
 
 CREATE TABLE MetodoDePago(
-  idMetodoPago int NOT NULL, 
-  nombre varchar(20) NOT NULL,
-  PRIMARY KEY(idMetodoPago)
+  IdMetodoPago int NOT NULL, 
+  Nombre varchar(20) NOT NULL,
+  PRIMARY KEY(IdMetodoPago)
 );
 
 CREATE TABLE Tarjeta(
-  idMetodoPago int NOT NULL, 
-  idTarjeta int NOT NULL, 
-  PRIMARY KEY(idMetodoPago),
-  UNIQUE(idTarjeta),
-  FOREIGN KEY(idMetodoPago) REFERENCES MetodoDePago(idMetodoPago)
+  IdMetodoPago int NOT NULL, 
+  IdTarjeta int NOT NULL, 
+  PRIMARY KEY(IdMetodoPago),
+  UNIQUE(IdTarjeta),
+  FOREIGN KEY(IdMetodoPago) REFERENCES MetodoDePago(IdMetodoPago)
 );
 
 CREATE TABLE PayPal(
-  idMetodoPago int NOT NULL, 
+  IdMetodoPago int NOT NULL, 
   confirmacion boolean NOT NULL,
-  PRIMARY KEY(idMetodoPago),
-  FOREIGN KEY(idMetodoPago) REFERENCES MetodoDePago(idMetodoPago)
+  PRIMARY KEY(IdMetodoPago),
+  FOREIGN KEY(IdMetodoPago) REFERENCES MetodoDePago(IdMetodoPago)
 );
 
 CREATE TABLE CentroDePagos(
-  idMetodoPago int NOT NULL, 
-  idCentroDePago int NOT NULL,
-  PRIMARY KEY(idMetodoPago),
-  UNIQUE(idCentroDePago),
-  FOREIGN KEY(idMetodoPago) REFERENCES MetodoDePago(idMetodoPago)
+  IdMetodoPago int NOT NULL, 
+  IdCentroDePago int NOT NULL,
+  PRIMARY KEY(IdMetodoPago),
+  UNIQUE(IdCentroDePago),
+  FOREIGN KEY(IdMetodoPago) REFERENCES MetodoDePago(IdMetodoPago)
 );
 
 CREATE TABLE Despacho(
-  idEntrega int NOT NULL, 
-  estadoEntrega varchar(20) NOT NULL, 
-  fechaEntrega date NOT NULL, 
-  lugar varchar(10) NOT NULL,
-  PRIMARY KEY(idEntrega)
+  IdEntrega int NOT NULL, 
+  Estado_Entrega varchar(20) NOT NULL, 
+  Fecha_Entrega date NOT NULL, 
+  Lugar varchar(10) NOT NULL,
+  PRIMARY KEY(IdEntrega)
 );
 
 CREATE TABLE Esta(
-  idCatalogo int NOT NULL, 
-  codProducto int NOT NULL,
-  PRIMARY KEY(idCatalogo, codProducto),
-  FOREIGN KEY(idCatalogo) REFERENCES Catalogo(idCatalogo),
-  FOREIGN KEY(codProducto) REFERENCES Producto(codProducto)
+  IdCatalogo int NOT NULL, 
+  CodProducto int NOT NULL,
+  PRIMARY KEY(IdCatalogo, CodProducto),
+  FOREIGN KEY(IdCatalogo) REFERENCES Catalogo(IdCatalogo),
+  FOREIGN KEY(CodProducto) REFERENCES Producto(CodProducto)
 );
 
 CREATE TABLE Administra(
   correo varchar(40) NOT NULL, 
-  idCatalogo int NOT NULL,
-  PRIMARY KEY(correo, idCatalogo),
+  IdCatalogo int NOT NULL,
+  PRIMARY KEY(correo, IdCatalogo),
   FOREIGN KEY(correo) REFERENCES vendedor(correo),
-  FOREIGN KEY(idCatalogo) REFERENCES Catalogo(idCatalogo)
+  FOREIGN KEY(IdCatalogo) REFERENCES Catalogo(IdCatalogo)
 );
 
 CREATE TABLE Gestiona(
-  idCategoria int NOT NULL, 
+  IdCategoria int NOT NULL, 
   correo varchar(40) NOT NULL,
-  PRIMARY KEY(idCategoria),
-  FOREIGN KEY(idCategoria) REFERENCES Categoria(idCategoria),
+  PRIMARY KEY(IdCategoria),
+  FOREIGN KEY(IdCategoria) REFERENCES Categoria(IdCategoria),
   FOREIGN KEY(correo) REFERENCES Administrador(correo)
 );
 
 CREATE TABLE Tiene(
-  codProducto int NOT NULL, 
-  idCategoria int NOT NULL, 
-  PRIMARY KEY(codProducto), 
-  FOREIGN KEY(codProducto) REFERENCES  Producto(codProducto),
-  FOREIGN KEY(idCategoria) REFERENCES Categoria(idCategoria)
+  CodProducto int NOT NULL, 
+  IdCategoria int NOT NULL, 
+  PRIMARY KEY(CodProducto), 
+  FOREIGN KEY(CodProducto) REFERENCES Producto(CodProducto),
+  FOREIGN KEY(IdCategoria) REFERENCES Categoria(IdCategoria)
 );
 
 CREATE TABLE Surge(
-  idOrden int NOT NULL, 
-  idEntrega int NOT NULL,
-  PRIMARY KEY(idOrden), 
-  FOREIGN KEY(idOrden) REFERENCES Compras(idOrden),
-  FOREIGN KEY(idEntrega) REFERENCES Despacho(idEntrega)
+  IdOrden int NOT NULL, 
+  IdEntrega int NOT NULL,
+  PRIMARY KEY(IdOrden), 
+  FOREIGN KEY(IdOrden) REFERENCES Compras(IdOrden),
+  FOREIGN KEY(IdEntrega) REFERENCES Despacho(IdEntrega)
 );
 
 CREATE TABLE Utiliza(
-  idOrden int NOT NULL, 
-  idMetodoPago int NOT NULL,
-  PRIMARY KEY(idOrden),
-  FOREIGN KEY(idOrden) REFERENCES Compras(idOrden),
-  FOREIGN KEY(idMetodoPago) REFERENCES MetodoDePago(idMetodoPago)
+  IdOrden int NOT NULL, 
+  IdMetodoPago int NOT NULL,
+  PRIMARY KEY(IdOrden),
+  FOREIGN KEY(IdOrden) REFERENCES Compras(IdOrden),
+  FOREIGN KEY(IdMetodoPago) REFERENCES MetodoDePago(IdMetodoPago)
 );
 
 CREATE TABLE Carrito(
-  codProducto int NOT NULL, 
+  CodProducto int NOT NULL, 
   correo varchar(40) NOT NULL, 
-  idOrden int NOT NULL, 
-  idCarrito int NOT NULL, 
-  cantidad int NOT NULL, 
-  subtotal int NOT NULL,
-  PRIMARY KEY(codProducto, idCarrito),
-  FOREIGN KEY(codProducto) REFERENCES Producto(codProducto),
+  IdOrden int NOT NULL, 
+  IdCarrito int NOT NULL, 
+  Cantidad int NOT NULL, 
+  SubTotal int NOT NULL,
+  PRIMARY KEY(CodProducto, IdCarrito),
+  FOREIGN KEY(CodProducto) REFERENCES Producto(CodProducto),
   FOREIGN KEY(correo) REFERENCES Cliente(correo),
-  FOREIGN KEY(idOrden) REFERENCES Compras(idOrden)
+  FOREIGN KEY(IdOrden) REFERENCES Compras(IdOrden)
 );
 
 CREATE TABLE Vende(
-  idCarrito int NOT NULL, 
-  codProducto int NOT NULL, 
+  IdCarrito int NOT NULL, 
+  CodProducto int NOT NULL, 
   correo varchar(40) NOT NULL,
-  PRIMARY KEY(idCarrito, codProducto),
-  FOREIGN KEY(codProducto) REFERENCES Producto(codProducto),
+  PRIMARY KEY(IdCarrito, CodProducto),
+  FOREIGN KEY(CodProducto) REFERENCES Producto(CodProducto),
   FOREIGN KEY(correo) REFERENCES vendedor(correo)
 );
 
--- creacion de usuarios
-create user 'dba'@'localhost' identified by 'dba-Sive.21';
-create user 'app'@'%' identified by 'app-Sive.21';
-create user 'respaldo'@'localhost' identified by 'respaldo-Sive.21';
 
 
--- creacion y asignacion permisos a los roles
-CREATE ROLE IF NOT EXISTS DBA, APP, BACKUP;
-GRANT SELECT, UPDATE, INSERT, DELETE ON bd_sive.* TO APP;
+-- administrador
+GRANT SELECT, UPDATE, INSERT, DELETE ON bd_sive.* TO ADMINISTRADOR;
 
--- asigancion de permisos
-GRANT DBA TO 'dba'@'localhost';
-GRANT APP TO 'app'@'%';
-GRANT BACKUP TO 'respaldo'@'localhost';
+-- vendedor
+GRANT SELECT ON bd_sive.* TO vendedor;
+-- funciona de a una
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Usuario TO VENDEDOR;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Producto TO VENDEDOR;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Catalogo TO VENDEDOR;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.CentroDePagos TO VENDEDOR;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Carrito TO VENDEDOR;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.MetodoDePago TO VENDEDOR;
 
--- GRANT EVENT, LOCK TABLES, SELECT ON bd_sive.* TO respaldo;
+-- cliente
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Usuario TO CLIENTE;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Cliente TO CLIENTE;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Carrito TO CLIENTE;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Tarjeta TO CLIENTE;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.PayPal TO CLIENTE;
+GRANT SELECT, INSERT, UPDATE ON bd_sive.Compras TO CLIENTE;
+GRANT SELECT ON bd_sive.Producto TO CLIENTE;
+GRANT SELECT ON bd_sive.Catalogo TO CLIENTE;
+GRANT SELECT ON bd_sive.Categoria TO CLIENTE;
+GRANT SELECT ON bd_sive.Despacho TO CLIENTE;
+GRANT SELECT ON bd_sive.CentroDePagos TO CLIENTE;
+GRANT SELECT ON bd_sive.MetodoDePago TO CLIENTE;

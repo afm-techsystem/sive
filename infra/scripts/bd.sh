@@ -43,30 +43,7 @@ function manejo_opciones_bd() {
 ###################
 # Función para crear usuarios de la base de datos
 ###################
-function crear_usuario_bd() {
-  # $DIALOG --clear --title "Crear nuevo usuario del sistema" --msgbox "Ingrese los nombres y contraseñas de los usuarios, para terminar deje en blanco el nombre de usuario." 0 0  
-  
-  # $DIALOG --clear --title "Ingresar usuario" --inputbox "Ingrese el nombre de usuario" 0 0 2> $tempfile
-  # if [ $? -ne 0 ]; then
-  #   exit 1
-  # fi
-
-  # USUARIO=$(cat $tempfile)
-  # if [ -z $USUARIO ]; then
-  #   exit 0
-  # fi
-  
-  # $DIALOG --clear --title "Ingresar contraseña" --inputbox "Ingrese la contraseña para $USUARIO" 0 0 2> $tempfile
-  # if [ $? -ne 0 ]; then
-  #   exit 1
-  # fi
-  
-  # PASS=$(cat $tempfile)
-  # if [ -z $PASS ]; then
-  #   exit 0
-  # fi
-
-  
+function crear_usuario_bd() {  
   if mysql -u $DBA_USER -p$DBA_PASS < $PATH_SCRIPTS_SQL/1_crearUsuarios.sql; then
     $DIALOG --clear --title "Creación de usuarios en la base de datos" --msgbox "Usuarios creados con éxito." 0 0
   else

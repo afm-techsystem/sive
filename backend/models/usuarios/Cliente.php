@@ -1,37 +1,48 @@
 <?php
 include_once '../../config.php';
-include_once  ROOT_DIR . '/models/usuarios/Usuario.php';
+include_once ROOT_DIR . '/models/usuarios/Usuario.php';
+include_once ROOT_DIR . '/models/db/FactoryConnection.php';
+include_once ROOT_DIR . '/models/crud/ClienteCrud.php';
 
 /**
  * Clase del Cliente
  */
 class Cliente extends Usuario {
 
-  private int $id;
+  private string $id;
   private int $reputacion;
 
   function __construct(
     string $nombre,
-    string $apellido/*, $celular, $documento, $fechaNac, $direccion*/,
+    string $apellido,
+    int $celular,
+    int $documento,
+    // DateTime $fechaNac,
+    // Domicilio $direccion,
     string $email,
     string $pass,
     int $reputacion
   ) {
     parent::__construct(
       $nombre,
-      $apellido, /*$celular, $cedula, $fechaNac, $direccion,*/
+      $apellido,
+      $celular,
+      $documento,
+      // $fechaNac,
+      // $direccion,
       $email,
       $pass
     );
+    $this->id = $email;
     $this->reputacion = $reputacion;
   }
 
   /**
    * Devuelve el id del cliente
    * 
-   * @return int  El id del cliente
+   * @return string  El id del cliente
    */
-  function getId(): int {
+  function getId(): string {
     return $this->id;
   }
 
@@ -83,20 +94,15 @@ class Cliente extends Usuario {
    * @param string $password  El password del cliente
    * @return Cliente|null  Devuelve el cliente creado o null en caso de fallo
    */
-  function crearCliente(
-    string $nombre,
-    string $apellido,
-    int $celular,
-    int $documento,
-    DateTime $fechaNac,
-    string $domicilio,
-    string $email,
-    string $password
-  ): ?Cliente {
-    // $nuevoCliente = new Cliente($nombre, $apellido, $email, $password, 0);
-    // CrudCliente::guardarBD($nombre, $apellido, $email, $password, 0);
-    // return $nuevoCliente;
-    return null;
+  function guardarCliente(Cliente $cliente): ?Cliente {
+    $crud = new ClienteCrud();
+    $creado = $crud->crearUsuario($cliente);
+    if ($creado) {
+      echo "Se guardo el cliente";
+    } else {
+      echo "Ocurrio un error al guardar el cliente";
+    }
+    return $cliente;
   }
 
   /**

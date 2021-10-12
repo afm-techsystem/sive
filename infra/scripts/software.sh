@@ -8,13 +8,6 @@
 readonly GITHUB_REPO="https://github.com/afm-techsystem/sive.git"
 readonly APP_NAME="sive"
 
-#readonly IP_BACK="172.18.0.22"
-#readonly HOST_BACK="sive"
-#readonly PORT_BACK="80:80"
-#readonly VOLUME_BACK=$HOME/$APP_NAME:/var/www/html/
-#readonly IMAGE_BACK="php-mysqli:7.4.16-apache"
-
-
 #Para generar las pantallas y borrar el archivo temporal donde se guardan las acciones del usuario
 DIALOG=${DIALOG=dialog}
 tempfile=$(tempfile 2> /dev/null) || tempfile=/tmp/test$$
@@ -50,8 +43,6 @@ function clone_repo() {
     cd -
   else
     mkdir $HOME/$APP_NAME
-    # sudo chown -R sysadmin: $APP_PATH
-    # sudo chmod -R 644 $APP_PATH
     clone_repo
   fi
 }
@@ -61,7 +52,6 @@ function clone_repo() {
 ###################
 function start_app() {
   docker-compose up -f $HOME/$APP_NAME/infra/prod/docker-compose.yml
-#  docker run --name web -d --ip $IP_BACK --hostname $HOST_BACK -p$PORT_BACK -v $VOLUME_BACK $IMAGE_BACK
   if [ $? -eq 0 ]; then
     $DIALOG --clear --title "Iniciando la APP" --msgbox "Aplicación levantada con éxito." 0 0
   else

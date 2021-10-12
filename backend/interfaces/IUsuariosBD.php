@@ -1,9 +1,9 @@
 <?php
 
 interface IUsuariosBD {
-  function crearUsuario(Usuario $usuario);
-  function modificarUsuario();
-  function eliminarUsuario();
+  function crearUsuario($usuario);
+  function modificarUsuario(string $id, $usuario);
+  function eliminarUsuario(string $id);
   function listarUsuario();
   function listarTodosUsuarios();
 }

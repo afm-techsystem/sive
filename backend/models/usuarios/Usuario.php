@@ -10,21 +10,29 @@ abstract class Usuario {
   private int $celular;
   private DateTime $fechaNac;
   private int $documento;
-  private string $domicilio;
+  protected string $calle = '';
+  protected int $numero = 0;
+  protected string $esquina = '';
   private string $email;
   private string $password;
 
   function __construct(
     string $nombre,
-    string $apellido, /*$celular, $fechaNac, $documento, $domicilio,*/
+    string $apellido,
+    int $celular,
+    // DateTime $fechaNac,
+    int $documento,
+    // Domicilio $domicilio = '',
     string $email,
     string $pass
   ) {
     $this->nombre = $nombre;
     $this->apellido = $apellido;
-    // $this->celular = $this->verificarTelefono($celular); // corroborar celular valido?
-    // $this->fechaNac = $this->verificarFechaNac($fechaNac); // corroborar fecha?
-    // $this->documento = $this->verificarDocumento($documento); // corroborar documento con funcion?
+    $this->celular = $this->verificarCelular($celular); // corroborar celular valido?
+
+    $this->fechaNac = new DateTime("19830114"); // YY MM DD
+    //$this->verificarFechaNac($fechaNac); // corroborar fecha?
+    $this->documento = $this->verificarDocumento($documento); // corroborar documento con funcion?
     // $this->domicilio = $domicilio;
     $this->email = $email;
     $this->password = $this->encriptarPassword($pass);
@@ -73,10 +81,12 @@ abstract class Usuario {
    * @param int $celular  El celular a verificar
    * @return bool  Devuelve true si el celular es valido
    */
-  private function verificarCelular(int $celular): bool {
+  private function verificarCelular(int $celular) {
     // verificar el celular
+    $valido = true;
     echo "Verificando el celular: $celular";
-    return true;
+    return
+      $valido ? $celular : new Exception("Error al verificar el celular. ", 1);
   }
 
   /**
@@ -108,10 +118,12 @@ abstract class Usuario {
    * @param DateTime $fecha  La fecha a verificar
    * @return bool  Devuelve true si la fecha es valida
    */
-  private function verificarFechaNac(DateTime $fecha): bool {
+  private function verificarFechaNac(DateTime $fecha) {
     // verificar la fecha de nacimiento
+    $valido = true;
     echo "Verificando la fecha de nacimiento: $fecha";
-    return true;
+    return
+      $valido ? $fecha : new Exception("Error al verificar la fecha de nacimiento. ", 1);
   }
 
   /**
@@ -120,7 +132,20 @@ abstract class Usuario {
    * @return DateTime  La fecha de nacimiento del usuario
    */
   public function getFechaNac(): DateTime {
-    return $this->fechaNac;
+    // ACA
+    return date $this->fechaNac;
+  }
+
+  /**
+   * Setea la fecha de nacimiento del usuario
+   * 
+   */
+  public function setFechaNac(DateTime $fechaNac): bool {
+    if ($this->verificarFechaNac($fechaNac)) {
+      $this->fechaNac = $fechaNac;
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -129,10 +154,12 @@ abstract class Usuario {
    * @param int $documento  El numero de documento a verificar
    * @return bool  Devuelve true si el documento es valido
    */
-  private function verificarDocumento(int $documento): bool {
+  private function verificarDocumento(int $documento) {
     // verificar la documento
+    $valido = true;
     echo "Verificando la documento: $documento";
-    return true;
+    return
+      $valido ? $documento : new Exception("Error al validar el documento. ", 1);
   }
 
   /**
@@ -164,7 +191,31 @@ abstract class Usuario {
    * @return string  El domicilio del usuario
    */
   public function getDomicilio(): string {
-    return $this->domicilio;
+    return '${$this->calle} ${$this->numero} esquina ${$this->esquina}';
+  }
+
+  function getCalle(): string {
+    return $this->calle;
+  }
+
+  function getNumero(): int {
+    return $this->numero;
+  }
+
+  function getEsquina(): string {
+    return $this->esquina;
+  }
+
+  function setCalle(string $calle) {
+    $this->calle = $calle;
+  }
+
+  function setNumero(int $numero) {
+    $this->numero = $numero;
+  }
+
+  function setEsquina(string $esquina) {
+    $this->esquina = $esquina;
   }
 
   /**
@@ -201,9 +252,9 @@ abstract class Usuario {
    * @return bool  Devuelve true si el password pasado coincide con el password del usuario
    */
   public function verificarPass(string $pass): bool {
-    // $passHash = md5(sha1($pass).$this->email);
-    // return $passHash === $this->password;
-    return password_verify($pass, $this->password);
+    $passHash = md5(sha1($pass) . $this->email);
+    return
+      $passHash === $this->password;
   }
 
   /**
@@ -212,13 +263,8 @@ abstract class Usuario {
    * @param string  El password del usuario
    * @return bool  Devuelve true si el password se pudo setear
    */
-  public function setPassword(string $pass): bool {
-    $hash = $this->encriptarPassword($pass);
-    if ($hash == false || $hash == NULL) {
-      return false;
-    }
-    $this->password = $hash;
-    return true;
+  public function setPassword(string $pass) {
+    $this->password = $this->encriptarPassword($pass);
   }
 
   /**
@@ -228,7 +274,7 @@ abstract class Usuario {
    * @return string  El hash del password
    */
   private function encriptarPassword(string $pass): string {
-    // return md5(sha1($pass).$this->email);
-    return password_hash($pass, PASSWORD_BCRYPT);
+    return
+      md5(sha1($pass) . $this->email);
   }
 }

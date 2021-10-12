@@ -3,6 +3,7 @@ include_once '../config.php';
 include_once ROOT_DIR . '/models/usuarios/Cliente.php';
 include_once ROOT_DIR . '/models/usuarios/Vendedor.php';
 include_once ROOT_DIR . '/models/usuarios/Admin.php';
+include_once ROOT_DIR . '/models/db/LoginDB.php';
 
 /**
  * Clase para gestionar lo relacionado al Login del usuario
@@ -42,7 +43,7 @@ class Login {
     $resultArray = null;
     if (self::verificarComplejidad($pass) && self::verificarLargo($pass)) {
       $sql = "select * from Usuario where correo=? and password=?";
-      $db = ConnectionDB::connectDB();
+      $db = LoginDb::connectDB();
       if (!$db) {
         return null;
       }
@@ -58,7 +59,7 @@ class Login {
         $resultArray = $result->fetch_assoc();
       }
       //}
-      ConnectionDB::disconnectDB();
+      LoginDb::disconnectDB();
       //}
     }
     return $resultArray;
@@ -145,6 +146,10 @@ class Login {
           $nuevoUsuario = new Cliente(
             $datos['nombre'],
             $datos['apellido'],
+            $datos['celular'],
+            $datos['documento'],
+            $datos['fechaNac'],
+            $datos['direccion'],
             $datos['correo'],
             $datos['password'],
             $datos['reputacion']
@@ -161,6 +166,10 @@ class Login {
           $nuevoUsuario = new Admin(
             $datos['nombre'],
             $datos['apellido'],
+            $datos['celular'],
+            $datos['documento'],
+            $datos['fechaNac'],
+            $datos['direccion'],
             $datos['correo'],
             $datos['password']
           );

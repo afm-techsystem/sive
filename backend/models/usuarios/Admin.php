@@ -11,8 +11,8 @@ class Admin extends Usuario {
 
   private int $id;
 
-  function __construct(string $nombre, string $apellido, /*int $celular, int $cedula, $fechaNac,*/ string $email, string $pass) {
-    parent::__construct($nombre, $apellido, /*$celular, $cedula, $fechaNac,*/ $email, $pass);
+  function __construct(string $nombre, string $apellido, int $celular, int $documento, $fechaNac, string $email, string $pass) {
+    parent::__construct($nombre, $apellido, $celular, $documento, $fechaNac, $email, $pass);
   }
 
   /**

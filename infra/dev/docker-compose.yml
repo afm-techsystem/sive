@@ -5,40 +5,25 @@ services:
 
   web:
     image: dinotomassini/php7.4.16-mysqli-apache:php7.4-mysqli
-    # build: 
-      # dockerfile: ./Dockerfile
     expose:
       - 80
     ports:
       - 8080:80
     volumes:
       - ../../backend:/var/www/html
-    environment:
-      MYSQL_HOST: 172.18.0.2
-      MYSQL_USER: app
-      MYSQL_PASSWORD: app-Sive.21
-      MYSQL_DB: bd_sive
-      ENVIRONMENT: dev
-#    network: 
-#      - sive
+    env_file:
+      - ../../backend/.env
+    links:
+      - mysql
 
-  database:
-    image: mysql:5.7.35
+  mysql:
+    image: mysql:8.0
     ports:
       - 33306:3306
     volumes:
-      - ./data/mysql_data_dev:/var/lib/mysql
-    environment:
-      MYSQL_HOST: 172.18.0.2
-      MYSQL_USER: app
-      MYSQL_ROOT_PASSWORD: app-Sive.21
-      MYSQL_DB: bd_sive
-#    network: 
-#      - sive
-
-#  sylius:
-#    network: sive
-
-#networks:
-#  sive:
-#    name: sive
+      - ./data:/var/lib/mysql
+      - ./data/init/crearBD.sql:/docker-entrypoint-initdb.d/init.sql
+#      - ./data/init/llenarDatos.sql:docker-entrypint-initdb.d/llenarDatos.sql
+    env_file:
+      - ../../backend/.env
+    restart: always
