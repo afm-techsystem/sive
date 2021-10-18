@@ -1,5 +1,5 @@
 <?php
-include_once '../config.php';
+// include_once '../config.php';
 include_once 'ConnectionDB.php';
 
 /**
@@ -7,8 +7,8 @@ include_once 'ConnectionDB.php';
  */
 class ClienteDb extends ConnectionDB {
 
-  protected const user = DB_USER_VENDEDOR; //DB_USER_CLIENTE;
-  protected const pass = DB_PASS_VENDEDOR; //DB_PASS_CLIENTE;
+  protected const user = DB_USER_CLIENTE; // DB_USER_VENDEDOR
+  protected const pass = DB_PASS_CLIENTE; // DB_PASS_VENDEDOR
   protected static $conn = null;
 
   public static function connectDB(): ?mysqli {
@@ -21,6 +21,7 @@ class ClienteDb extends ConnectionDB {
           self::name,
           self::port
         );
+        echo "CONEXION ESTABLECIDA <br>";
       } catch (mysqli_sql_exception $e) {
         echo "ERROR: " . $e . "<br />";
       }

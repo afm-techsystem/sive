@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../config.php';
+//include_once '../../config.php';
 include_once ROOT_DIR . '/models/db/ClienteDb.php';
 include_once ROOT_DIR . '/models/db/VendedorDb.php';
 include_once ROOT_DIR . '/models/db/AdminDb.php';

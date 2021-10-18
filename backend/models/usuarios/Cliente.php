@@ -1,8 +1,8 @@
 <?php
-include_once '../../config.php';
-include_once ROOT_DIR . '/models/usuarios/Usuario.php';
-include_once ROOT_DIR . '/models/db/FactoryConnection.php';
-include_once ROOT_DIR . '/models/crud/ClienteCrud.php';
+//include '../../config.php';
+include ROOT_DIR . '/models/usuarios/Usuario.php';
+include ROOT_DIR . '/models/db/FactoryConnection.php';
+include ROOT_DIR . '/models/crud/ClienteCrud.php';
 
 /**
  * Clase del Cliente

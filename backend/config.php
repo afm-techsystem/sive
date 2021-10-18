@@ -2,6 +2,7 @@
 define("ROOT_DIR", dirname(__FILE__));
 
 define("DB_HOST", "172.18.0.2");
+// define("DB_HOST", "mysql");
 define("DB_PORT", 3306);
 
 define("MYSQL_ROOT_USER", "root");

@@ -84,7 +84,7 @@ abstract class Usuario {
   private function verificarCelular(int $celular) {
     // verificar el celular
     $valido = true;
-    echo "Verificando el celular: $celular";
+    echo "Verificando el celular: $celular <br>";
     return
       $valido ? $celular : new Exception("Error al verificar el celular. ", 1);
   }
@@ -121,7 +121,7 @@ abstract class Usuario {
   private function verificarFechaNac(DateTime $fecha) {
     // verificar la fecha de nacimiento
     $valido = true;
-    echo "Verificando la fecha de nacimiento: $fecha";
+    echo "Verificando la fecha de nacimiento: $fecha <br>";
     return
       $valido ? $fecha : new Exception("Error al verificar la fecha de nacimiento. ", 1);
   }
@@ -131,9 +131,9 @@ abstract class Usuario {
    * 
    * @return DateTime  La fecha de nacimiento del usuario
    */
-  public function getFechaNac(): DateTime {
-    // ACA
-    return date $this->fechaNac;
+  public function getFechaNac(): string {
+    // ACA COMO MANEJAR LA FECHA
+    return $this->fechaNac->getTimestamp();
   }
 
   /**
@@ -157,7 +157,7 @@ abstract class Usuario {
   private function verificarDocumento(int $documento) {
     // verificar la documento
     $valido = true;
-    echo "Verificando la documento: $documento";
+    echo "Verificando la documento: $documento <br>";
     return
       $valido ? $documento : new Exception("Error al validar el documento. ", 1);
   }

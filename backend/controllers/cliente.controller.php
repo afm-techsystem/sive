@@ -13,8 +13,9 @@ $email = $_POST['mail'];
 $pass = $_POST['pass'];
 $reputacion = 0;
 
-echo "ACA EL PASS: " . $_POST['pass'];
+echo "ACA EL PASS: " . $_POST['pass'] . "<br>";
 print_r($_POST);
+echo "<br>";
 
 $cliente = new Cliente($nombre, $apellido, $celular, $documento/* $fechaNac, $domicilio*/, $email, $pass, $reputacion);
 

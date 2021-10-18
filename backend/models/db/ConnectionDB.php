@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../config.php';
+// include_once '../../config.php';
 
 /**
  * Clase para realizar la conexion con la base de datos
