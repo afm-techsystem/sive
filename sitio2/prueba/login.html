@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.I.V.E.</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+
+</head>
+<body>
+    
+   <!-- BARRA NAVEGACION -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top container-fluid d-flex">
+
+    <!-- LOGO E LINK AL HOMEPAGE -->
+    <a class="navbar-brand" href="./index.html">
+      <img src="./img/logo.png" alt="LOGO SIVE" width="70" height="70"
+        class="d-inline-block align-text-top">
+      S.I.V.E.
+    </a>
+    <div class="container">
+    <div class="row">
+  <!-- !! El menu aparece desplegado revisarlo -->
+
+  <!-- MENU TIPO HAMBURGUESA (faltan agregar mas y ver con php si ya esta logueado o no para cambiar alunos links)-->
+  <div class="justify-self-end">
+    <!-- EL BOTON QUE MUESTRA U OCULTA EL MENU CUANDO ESTA COLAPSADO -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+      aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- ESTE ES EL MENU EN SI, EL CUAL SE COLAPSARA PARA DISPOSITIVOS MOVILES Y TABLET -->
+    <div id="navbarMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./cliente/formularioRegistroCliente.html">Registrarse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/login.html">Ingresar</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Categorias</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/cliente/carritot.html">Carrito</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/cliente/formularioContacto.html">Contacto</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!-- BUSCADOR -->
+<section id="buscador" class="container mt-3 mb-3">
+  <form class="d-flex mx-auto" style="max-width: 38rem;" action="#">
+    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+  </form>
+</section>
+
+<!-- CAMINO PARA NAVEGAR MAS FACILMENTE -->
+<nav class="container p-3" style="--bs-breadcrumb-divider: ' | ';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="./index.html">Inicio</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Login</li>
+    <!-- <li class="breadcrumb-item">Data</li> -->
+  </ol>
+</nav>
+<!-- HASTA ACA  -->
+
+<main class="container mb-5">
+
+  <div class="card mx-auto" style="max-width: 26rem;">
+
+    <div class="row m-3">
+      <div class="col">
+        <img src="./img/logo.png" alt="IMAGEN" width="80px" class="d-block mx-auto">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <h2 class="text-center text-muted mt-2">SIVE</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <form id="loginForm" action="#" method="post" class="m-3">
+
+<!--
+          <div class="d-flex justify-content-end">
+            <div id="loginCompany">
+              <span id="loginCompanyText" class="badge bg-warning" style="cursor: pointer;">Ingrese como empresa
+                --><!--</span>
+            </div>
+          </div>-->
+
+          <!-- INPUT MAIL -->
+          <div id="inputEmail" class="form-group">
+            <div class="form-floating m-3">
+              <input type="email" name="mail" id="mail" placeholder="Ingrese su email" class="form-control" autofocus
+                required>
+              <label for="mail">Email</label>
+              <small class="form-text text-muted d-none">No tiene el formato adecuado.</small>
+
+              <!-- En este input de tipo email, es valido ingresar algo@algo , no es necesario agregar el .algo , esto habria que verlo con JS -->
+            </div>
+          </div>
+
+          <!-- INPUT RUT -->
+          <!--<div id="inputRut" class="form-group" hidden>
+            <div class="form-floating m-3">
+              <!-- pattern="/^([0-9])*$/" -->
+             <!-- <input type="text" name="rut" id="rut" placeholder="Ingrese su RUT" class="form-control" autofocus
+                required>
+              <label for="rut">RUT</label>
+              <small id="rutHelper" class="form-text text-muted">Solo se aceptan números.</small>
+            </div>
+          </div> -->
+
+          <!-- INPUT PASS -->
+          <div class="form-group">
+            <div class="form-floating m-3">
+              <input type="password" name="pass" id="pass" minlength="4" placeholder="Ingrese su contraseña"
+                class="form-control" required>
+              <label for="pass">Contraseña</label>
+            </div>
+          </div>
+
+          <!-- BOTON INGRESAR -->
+          <div class="form-group d-flex justify-content-center">
+            <button type="submit" id="btnSubmitLogin" class="btn btn-primary w-50 mt-3">Ingresar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- REPETIR DE ACA -->
+<!-- FOOTER -->
+<footer class="bg-warning container-fluid">
+  <p class="text-muted text-center">
+    | Grupo <strong>AFM Tech System</strong> | Proyecto S.I.V.E. | 2021 |
+  </p>
+</footer>
+
+<!-- SCRIPTS BOOTSTRAP -->
+<script src="./js/bootstrap.bundle.min.js"></script>
+<!-- SCRIPTS JQUERY -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- SCRIPTS PROPIOS -->
+<script src="./js/main.js"></script>
+</div>
+</div>
+</body>
+</html>
+<!-- HASTA ACA -->
+
+<script>
+$(document).ready(
+  $('#loginCompany').click(changeWhoLogin),
+);
+
+/**
+ * Funcion para mostrar u ocultar el campo de email o de rut
+ */
+function changeWhoLogin() {
+  InputEmail = $('#inputEmail');
+  InputRut = $('#inputRut');
+  TextWhoLogin = $('#loginCompanyText')
+
+  if (InputRut.attr('hidden')) {
+    // Ingreso como empresa
+    InputRut.removeAttr('hidden');
+    InputEmail.attr('hidden', true);
+    TextWhoLogin.text('Ingrese como cliente o vendedor -->');
+  } else {
+    // Ingreso como cliente o vendedor
+    InputRut.attr('hidden', true);
+    InputEmail.removeAttr('hidden');
+    TextWhoLogin.text('Ingrese como empresa -->');
+  }
+}
+</script>
+<script>
+$(document).ready(() => {
+  let intentos = 0;
+
+  $('#mail').on('blur', e => {
+    const mail = e.taget.val();
+    if (verificarEmail(mail)) {
+      e.target.parentElement.querySelector('small').classList.add('d-none');
+    } else {
+      e.target.parentElement.querySelector('small').classList.remove('d-none');
+    }
+  });
+
+  $('#loginForm').on('submit', e => {
+    e.preventDefault();
+    const email = $('#mail').val().trim();
+    const pass = $('#pass').val().trim();
+    if (!verificarReglasPassword(pass)) {
+      intentos++;
+      alert('Usuario y/o contraseña inválidas.');
+    }
+
+    enviarFormualrio(email, pass);
+
+  });
+
+});
+
+
+/**
+ * Funcion para verificar las reglas de la contraseña
+ * 
+ * @param string  El password ingresado
+ * @return  Devuelve si la contraseña cumple las reglas o no
+ */
+function verificarReglasPassword(pass) {
+  const PASS_REGEX = /^[A-Za-z]{4,}$/mg;
+  // const PASS_REGEX = /^(?=(?:.*[a-z]){1,})(?=(?:.*[A-Z]){1,})(?=(?:.*[0-9]){1,})(?=(?:.*[*#$%&!]){1,})[A-Za-z0-9*#$%&!]{8,}$/mg;
+  return PASS_REGEX.test(pass);
+}
+
+/**
+ * Funcion para verificar un correo electronico
+ * 
+ * @param string  El email ingresado
+ * @return  Devuelve si el mail es valido o no
+ */
+function verificarEmail(mail) {
+  const EMAIL_REGEX = /^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\.[a-z]{2,})$/i;
+  return EMAIL_REGEX.test(mail);
+}
+
+function enviarFormualrio(email, pass) {
+  let params = {
+    mail: email,
+    password: pass
+  };
+  // Metodo AJAX para enviar un request al servidor
+  $.ajax({
+    url: '/controllers/login.controller.php', // a donde manda el request
+    data: params, // los datos para enviar
+    type: 'POST', // el metodo HTTP para el envio
+    datatype: 'json', // el tipo de datos que espera en la respuesta puede ser html tambien
+  }).done(res => {
+    // lo que ejecuta cuando obtiene la respuesta(res) del servidor
+    alert('Consulta terminada con exito');
+
+  }).fail((xhr, status, errotThrown) => {
+    // lo que ejecuta cuando falla, recibe el request(xhr), el estado(status), y el error(errorThrown)
+    alert('Consulta fallida');
+
+  }).always((xhr, status) => {
+    // lo que ejecuta cuando termina el request, no importa si fue con exito o con falla, recibe el request(xhr) y el estado(state)
+    alert('Consulta terminada, con o sin exito ${state}');
+
+  });
+}
+</script>
+ 

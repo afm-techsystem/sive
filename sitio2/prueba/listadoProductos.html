@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.I.V.E.</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+
+</head>
+<body>
+    
+   <!-- BARRA NAVEGACION -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top container-fluid d-flex">
+
+    <!-- LOGO E LINK AL HOMEPAGE -->
+    <a class="navbar-brand" href="/">
+      <img src="./img/logo.png" alt="LOGO SIVE" width="70" height="70"
+        class="d-inline-block align-text-top">
+      S.I.V.E.
+    </a>
+    <div class="container">
+    <div class="row">
+
+  <!-- !! El menu aparece desplegado revisarlo -->
+
+  <!-- MENU TIPO HAMBURGUESA (faltan agregar mas y ver con php si ya esta logueado o no para cambiar alunos links)-->
+  <div class="justify-self-end">
+    <!-- EL BOTON QUE MUESTRA U OCULTA EL MENU CUANDO ESTA COLAPSADO -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+      aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- ESTE ES EL MENU EN SI, EL CUAL SE COLAPSARA PARA DISPOSITIVOS MOVILES Y TABLET -->
+    <div id="navbarMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./cliente/formularioRegistroCliente.html">Registrarse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./login.html">Ingresar</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Ofertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Categorias</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="./cliente/carrito.html">Carrito</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./cliente/formularioContacto.html">Contacto</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!-- BUSCADOR -->
+<section id="buscador" class="container mt-3 mb-3">
+  <form class="d-flex mx-auto" style="max-width: 38rem;" action="#">
+    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+  </form>
+</section>
+
+<!-- CAMINO PARA NAVEGAR MAS FACILMENTE -->
+<nav class="container p-3" style="--bs-breadcrumb-divider: ' | ';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+    <!-- <li class="breadcrumb-item"><a href="#">Library</a></li> -->
+    <!-- <li class="breadcrumb-item">Data</li> -->
+  </ol>
+</nav>
+
+<table class="table">
+  <tr>
+    <a href="./paginaProducto.html">
+      <td>
+        <img src="./img/product--3891591_1280.jpg" alt="reloj" class="" style="height: 7rem;">
+      </td>
+      <td>
+        <h4 class="">Reloj ETERNO</h4>
+        <p>Excelente reloj que dura toda la vida, y no tiene engranajes.</p>
+      </td>
+      <td>
+        <h3 class=""><span class="badge rounded-pill bg-primary">$ 15555</span></h3>
+      </td>
+      <td>
+        <button class="btn btn-danger btn-cart"><i class="fas fa-cart-plus"></i></button>
+      </td>
+    </a>
+  </tr>
+
+  <tr>
+    <a href="./paginaProducto.html">
+      <td>
+        <img src="./img/product-5222394_1280.jpg" alt="camara" class="" style="height: 7rem;">
+      </td>
+      <td>
+        <h4 class="">Camara TOTAL</h4>
+        <p>Camara especial que toma fotos bajo el agua, sobre el agua, y se ha probado bajo la lava.</p>
+      </td>
+      <td>
+        <h3 class=""><span class="badge rounded-pill bg-primary">$ 15555</span></h3>
+      </td>
+      <td>
+        <button class="btn btn-danger"><i class="fas fa-cart-plus"></i></button>
+      </td>
+    </a>
+  </tr>
+
+  <tr>
+    <a href="./paginaProducto.html">
+      <td>
+        <img src="./img/product-5222398_1280.jpg" alt="lentes" class="" style="height: 7rem;">
+      </td>
+      <td>
+        <h4 class="">Lentes ESPIAS</h4>
+         <p>Lentes de sol, muy buen estilo y materiales; y si, si tiene rayos X.</p>
+      </td>
+      <td>
+        <h3 class=""><span class="badge rounded-pill bg-primary">$ 15555</span></h3>
+      </td>
+      <td>
+        <button class="btn btn-danger"><i class="fas fa-cart-plus"></i></button>
+      </td>
+    </a>
+  </tr>
+
+  <tr>
+    <a href="./paginaProducto.html">
+      <td>
+        <img src="./img/product-5226389_1280.jpg" alt="cuchillas" class="" style="height: 7rem;">
+      </td>
+      <td>
+        <h4 class="">Cuchillas Nordicas</h4>
+        <p>Cuchilla curva para corte de aromaticas, y alguna cosa mas; forjada en la mismisima forja
+            de los enanos sindri y su hermano Brokk.</p>
+      </td>
+      <td>
+        <h3 class=""><span class="badge rounded-pill bg-primary">$ 15555</span></h3>
+      </td>
+      <td>
+        <button class="btn btn-danger"><i class="fas fa-cart-plus"></i></button>
+      </td>
+    </a>
+  </tr>
+
+  <tr>
+    <a href="./paginaProducto.html">
+      <td>
+        <img src="./img/product-958804_1280.jpg" alt="zapatos" class="" style="height: 7rem;">
+      </td>
+      <td>
+        <h4 class="">Zapatos Acuaticos</h4>
+        <p>Zapatos anti-humedad y agua, jesus usaba un par de estos cuando camino sobre el agua.</p>
+      </td>
+      <td>
+        <h3 class=""><span class="badge rounded-pill bg-primary">$ 15555</span></h3>
+      </td>
+      <td>
+        <button class="btn btn-danger"><i class="fas fa-cart-plus"></i></button>
+      </td>
+    </a>
+  </tr>
+</table>
+
+<footer class="bg-warning container-fluid">
+  <p class="text-muted text-center">
+    | Grupo <strong>AFM Tech System</strong> | Proyecto S.I.V.E. | 2021 |
+  </p>
+</footer>
+
+<!-- SCRIPTS BOOTSTRAP -->
+<script src="./js/bootstrap.bundle.min.js"></script>
+<!-- SCRIPTS JQUERY -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- SCRIPTS PROPIOS -->
+<script src="./js/main.js"></script>
+
+</div>
+</div>
+</body>
+</html>     

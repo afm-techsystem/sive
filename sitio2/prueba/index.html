@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.I.V.E.</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css"/>
+
+</head>
+<body>
+   <!-- BARRA NAVEGACION -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top container-fluid d-flex">
+
+    <!-- LOGO E LINK AL HOMEPAGE -->
+    <a class="navbar-brand" href="index.html">
+      <img src="./img/logo.png" alt="LOGO SIVE" width="70" height="70"
+        class="d-inline-block align-text-top">
+      S.I.V.E.
+    </a>
+    <div class="container">
+    <div class="row">
+
+
+
+
+
+      
+    </div>
+    </div>
+  
+    <!-- !! El menu aparece desplegado revisarlo -->
+  
+    <!-- MENU TIPO HAMBURGUESA (faltan agregar mas y ver con php si ya esta logueado o no para cambiar alunos links)-->
+    <div class="justify-self-end">
+      <!-- EL BOTON QUE MUESTRA U OCULTA EL MENU CUANDO ESTA COLAPSADO -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+        aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- ESTE ES EL MENU EN SI, EL CUAL SE COLAPSARA PARA DISPOSITIVOS MOVILES Y TABLET -->
+      <div id="navbarMenu" class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./cliente/formularioRegistroCliente.html">Registrarse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./login.html">Ingresar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./cliente/perfilCliente.html">Perfil</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Ofertas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Categorias</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="./cliente/carrito.html">Carrito</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./cliente/formularioContacto.html">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/controllers/logout.controller.php">LogOut</a>
+        </ul>
+      </div>
+  
+    </div>
+  </nav>
+  
+  <!-- BUSCADOR -->
+  <section id="buscador" class="container mt-3 mb-3">
+    <form class="d-flex mx-auto" style="max-width: 38rem;" action="#">
+      <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+      <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+  </section>
+  
+  <!-- SECCION DE CARRUSEL DE OFERTAS -->
+  <!-- ! cambiar por un slider -->
+  <section id="ofertas" class="container mb-3">
+    <!-- CAROUSEL -->
+    <div id="carouselOfertas" class="carousel slide" data-bs-ride="carousel">
+      <!-- INDICADORES DEL CAROUSEL -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselOfertas" data-bs-slide-to="0" class="active" aria-current="true"
+          aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselOfertas" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselOfertas" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <!-- CONTENIDO DEL CAROUSEL -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./img/product--3891591_1280.jpg" class="d-block w-100" alt="reloj" style="height: 20rem;">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Reloj ETERNO</h5>
+            <p>No la dejes pasar</p>
+            <a href="./paginaProducto.html" class="btn btn-primary">Comprar</a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./img/product-5222394_1280.jpg" class="d-block w-100" alt="camara" style="height: 20rem;">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Camara TOTAL</h5>
+            <p>No la dejes pasar</p>
+            <a href="./paginaProducto.html" class="btn btn-primary">Comprar</a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./img/product-5222398_1280.jpg" class="d-block w-100" alt="lentes" style="height: 20rem;">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Lentes ESPIAS</h5>
+            <p>No la dejes pasar</p>
+            <a href="./paginaProducto.html" class="btn btn-primary">Comprar</a>
+          </div>
+        </div>
+      </div>
+      <!-- BOTON PREVIO -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselOfertas" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <!-- BOTON PROXIMO -->
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselOfertas" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+  
+  <!-- SECCION PRODUCTOS DESTACADOS -->
+  <section id="destacados" class="container mt-3 mb-3">
+    <h3 class="text-center">DESTACADOS</h3>
+  
+    <div id="listaDestacados" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    </div>
+  
+    <div class="d-flex justify-content-end">
+      <a class="btn btn-primary"  href="./paginaProducto.html">Ver todos los produtos --></a>
+    </div>
+  </section>
+  
+  
+  
+  <!-- FOOTER -->
+  <footer class="bg-warning container-fluid">
+    <div class="container p-2">
+      <div class="row justify-content-center text-center">
+        <div class="col">
+          <a href="https://twitter.com/?lang=es" class="text-muted social-link">
+            <i class="fab fa-twitter fs-1"></i>
+          </a>
+        </div>
+        <div class="col">
+          <a href="https://www.facebook.com/" class="text-muted social-link">
+            <i class="fab fa-facebook fs-1"></i>
+          </a>
+        </div>
+        <div class="col">
+          <a href="https://www.instagram.com/?hl=es" class="text-muted social-link">
+            <i class="fab fa-instagram fs-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p class="text-muted text-center">
+          | Grupo <strong>AFM Tech System</strong> | Proyecto S.I.V.E. | 2021 |
+        </p>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- SCRIPTS BOOTSTRAP -->
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <!-- SCRIPTS JQUERY -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!-- SCRIPTS PROPIOS -->
+  <script type="module" src="./js/main.js"></script>
+    <div class="container">
+        <br/>
+        <dic class="row">
+          
+
+        
+
+
+
+        </div>
+    </div>
+</body>
+</html>       
