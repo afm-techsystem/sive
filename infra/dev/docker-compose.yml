@@ -12,7 +12,7 @@ services:
     volumes:
       - ../../backend:/var/www/html
     env_file:
-      - ../../backend/.env
+      - .env
 #    links:
 #      - mysql
 
@@ -22,7 +22,7 @@ services:
       - 33306:3306
     volumes:
       - ./data:/var/lib/mysql
-      # - ./data/init/crearBD.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init/crearBD.sql:/docker-entrypoint-initdb.d/init.sql
 #      - ./data/init/llenarDatos.sql:docker-entrypint-initdb.d/llenarDatos.sql
     env_file:
       - ../../backend/.env

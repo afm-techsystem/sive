@@ -9,23 +9,12 @@ GRANT ALL PRIVILEGES ON *.* TO BACKUP;
 -- create user IF NOT EXISTS 'dino'@'%' identified by 'dino';
 -- GRANT ALL PRIVILEGES ON *.* TO 'dino'@'%' with grant option;
 
-create user IF NOT EXISTS 'app'@'%' identified by 'app-sive.21';
+create user IF NOT EXISTS 'app'@'%' identified by 'app-Sive.21';
 create user IF NOT EXISTS 'dba'@'localhost' identified by 'dba-Sive.21';
 create user IF NOT EXISTS 'respaldo'@'localhost' identified by 'respaldo-Sive.21';
 create user IF NOT EXISTS 'vendedor'@'%' identified by 'vendedor-Sive.21';
 create user IF NOT EXISTS 'cliente'@'%' identified by 'cliente-Sive.21';
 create user IF NOT EXISTS 'administrador'@'%' identified by 'administrador-Sive.21';
-
--- ASIGNACION DE ROLES
-grant DBA to 'dba'@'localhost';
-grant BACKUP to 'respaldo'@'localhost';
-grant ADMINISTRADOR to 'app'@'%';
-grant ADMINISTRADOR to 'administrador'@'%';
-grant VENDEDOR to 'vendedor'@'%';
-grant CLIENTE to 'cliente'@'%';
-
-
-flush privileges;
 
 CREATE DATABASE IF NOT EXISTS bd_sive;
 
@@ -33,14 +22,14 @@ USE bd_sive;
 
 CREATE TABLE Usuario (
 	correo varchar(40) NOT NULL,
-  Password varchar(20) NOT NULL,
+  Password varchar(120) NOT NULL,
   Nombre varchar(20) NOT NULL,
   Apellido varchar(20) NOT NULL,
-  Fecha_Nac date NOT NULL,
+  Fecha_Nac date,
   Documento varchar(20) NOT NULL,
-  Calle varchar(15) NOT NULL,
-  Numero int NOT NULL,
-  Esquina varchar(15) NOT NULL,
+  Calle varchar(15),
+  Numero int,
+  Esquina varchar(15),
   PRIMARY KEY(correo),
   UNIQUE(Documento)
 );
@@ -218,13 +207,13 @@ CREATE TABLE Vende(
   FOREIGN KEY(correo) REFERENCES vendedor(correo)
 );
 
+-- me estan funcionando si se lo aplico al usuario y no al rol
 -- administrador
-GRANT SELECT ON bd_sive.* TO administrador;
+GRANT SHOW VIEW ON bd_sive.* TO ADMINISTRADOR;
 GRANT SELECT, UPDATE, INSERT, DELETE ON bd_sive.* TO ADMINISTRADOR;
 
 -- vendedor
-GRANT SELECT ON bd_sive.* TO vendedor;
--- funciona de a una
+GRANT SHOW VIEW ON bd_sive.* TO VENDEDOR;
 GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Usuario TO VENDEDOR;
 GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Producto TO VENDEDOR;
 GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Catalogo TO VENDEDOR;
@@ -233,9 +222,10 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Carrito TO VENDEDOR;
 GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.MetodoDePago TO VENDEDOR;
 
 -- cliente
-GRANT SELECT ON bd_sive.* TO cliente;
+GRANT SHOW VIEW ON bd_sive.* TO CLIENTE;
 GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Usuario TO CLIENTE;
 GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Cliente TO CLIENTE;
+GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Telefono TO CLIENTE;
 GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Carrito TO CLIENTE;
 GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.Tarjeta TO CLIENTE;
 GRANT SELECT, INSERT, UPDATE, DELETE ON bd_sive.PayPal TO CLIENTE;
@@ -246,3 +236,14 @@ GRANT SELECT ON bd_sive.Categoria TO CLIENTE;
 GRANT SELECT ON bd_sive.Despacho TO CLIENTE;
 GRANT SELECT ON bd_sive.CentroDePagos TO CLIENTE;
 GRANT SELECT ON bd_sive.MetodoDePago TO CLIENTE;
+
+-- ASIGNACION DE ROLES
+grant DBA to 'dba'@'localhost';
+grant BACKUP to 'respaldo'@'localhost';
+grant ADMINISTRADOR to 'app'@'%';
+grant ADMINISTRADOR to 'administrador'@'%';
+grant VENDEDOR to 'vendedor'@'%';
+grant CLIENTE to 'cliente'@'%';
+
+
+flush privileges;

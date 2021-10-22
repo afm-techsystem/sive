@@ -1,5 +1,6 @@
 backend/todo.txt
 backend/.env
+infra/{dev,test,prod}/.env
 frontend/todo.txt
 frontend/notes.txt
 infra/ayuda.txt

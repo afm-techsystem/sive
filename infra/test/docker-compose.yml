@@ -11,19 +11,29 @@ services:
       - 80:80
     volumes:
       - ../../backend:/var/www/html
-    environment:
-      MYSQL_HOST: database
-      MYSQL_USER: app
-      MYSQL_PASSWORD: app-Sive.21
-      MYSQL_DB: bd_sive_test
-      ENVIRONMENT: test
+    env_file:
+      - .env
+    # environment:
+    #   MYSQL_HOST: database
+    #   MYSQL_USER: app
+    #   MYSQL_PASSWORD: app-Sive.21
+    #   MYSQL_DB: bd_sive_test
+    #   ENVIRONMENT: test
       
   # mysql:
-  #   image: mysql:5.7.35
+  #   image: mysql:8.0
   #   ports:
   #     - 33306:3306
+  #   volumes:
+  #     - ./data:/var/lib/mysql
+  #     - ./init/crearBD.sql:/docker-entrypoint-initdb.d/init.sql
+#      - ./data/init/llenarDatos.sql:docker-entrypint-initdb.d/llenarDatos.sql
+    # env_file:
+    #   - .env
+    # restart: always
+
   #   environment:
-  #     MYSQL_HOST: database
+  #     MYSQL_HOST: mysql
   #     MYSQL_USER: app
   #     MYSQL_PASSWORD: app-Sive.21
   #     MYSQL_DB: bd_sive_test

@@ -124,82 +124,144 @@ require ROOT_DIR . "/views/partials/footer.php";
 
 <script>
 $(document).ready(() => {
-  ('#celular').addEventListener('blur', e => soloNumeros(e));
-  ('#documento').addEventListener('blur', e => soloNumeros(e));
-  ('#mail').addEventListener('blur', e => verificarEmail(e));
-  ('#pass').addEventListener('blur', e => complejidadPassword(e));
-  ('#signupForm').addEventListener('submit', e => envio(e));
+  $('#celular').blur(e => soloNumeros(e.target.value));
+  $('#documento').blur(e => soloNumeros(e));
+  $('#mail').blur(e => verificarEmail(e));
+  $('#pass').blur(e => complejidadPassword(e));
+  $('#signupForm').submit(function(e) {
+    // console.log("el target.value del submit del form: " + e.value);
+    if (preEnvio()) {
+      // console.log(e);
+      console.log("envio exitoso");
+    } else {
+      console.log("Fallo al preparar el envio");
+      e.preventDefault();
+    }
+  });
 });
 
-function envio(e) {
-  e.preventDefault();
-  const celular = e.querySelector('').val().trim();
-  const documento = e.querySelector('').val().trim();
-  const mail = e.querySelector('').val().trim();
-  const pass = e.querySelector('').val().trim();
+function preEnvio() {
+  const celular = $('#celular');
+  const documento = $('#documento');
+  const mail = $('#mail');
+  const pass = $('#pass');
+  const repass = $('#repass');
 
-  if (soloNumeros(celular) && soloNumeros(documento) && verificarEmail(mail) && complejidadPassword(pass) &&
-    verificarRePass(pass)) {
-    e.submit();
+  // console.log("elemento celular");
+  // console.log(celular);
+
+  // console.log("Los valores dentro de envio: ");
+  // console.log(celular[0].value);
+  // console.log(documento[0].value);
+  // console.log(mail[0].value);
+  // console.log(pass[0].value);
+  // console.log(repass[0].value);
+
+  if (soloNumeros(celular[0].value, celular)) {
+    celular[0].parentElement.querySelector('small').classList.add('d-none');
+    console.log("celular verificado");
+    if (soloNumeros(documento[0].value)) {
+      documento[0].parentElement.querySelector('small').classList.add('d-none');
+      console.log("documento verificado");
+      if (verificarEmail(mail[0].value)) {
+        mail[0].parentElement.querySelector('small').classList.add('d-none');
+        console.log("email verificado");
+        if (complejidadPassword(pass[0].value)) {
+          pass[0].parentElement.querySelector('small').classList.add('d-none');
+          console.log("complejidad del password verificada");
+          if (verificarRepass(pass[0].value, repass[0].value)) {
+            // celular[0].parentElement.querySelector('small').classList.add('d-none');
+            console.log("preparado para enviar");
+            // console.log(e);
+            // e.submit();
+            return true;
+          } else {
+            console.log("Error al validar la pass y el repass");
+            alert('Las contraseñas no coinciden');
+          }
+        } else {
+          pass.target.parentElement.querySelector('small').classList.remove('d-none');
+          console.log("Error al validar la complejidad del pass");
+        }
+      } else {
+        mail.target.parentElement.querySelector('small').classList.remove('d-none');
+        console.log("Error al validar la mail");
+      }
+    } else {
+      documento.target.parentElement.querySelector('small').classList.remove('d-none');
+      console.log("Error al validar el documento");
+    }
   } else {
-    alert('Ocurrio un error. Por favor revise los datos.');
+    celular.target.parentElement.querySelector('small').classList.remove('d-none');
+    console.log("Error al validar el celular");
   }
+  return false;
+
 }
 
-function soloNumeros(e) {
+function soloNumeros(texto, elemento) {
   const SOLO_NUMEROS = /^[0-9]+$/;
 
-  let texto = e.target.value;
+  console.log(elemento);
 
+  // const texto = value;
+  // console.log("el valor del elemento en soloNumeros: ");
+  console.log(texto);
+  // return SOLO_NUMEROS.test(texto);
   if (SOLO_NUMEROS.test(texto)) {
-    e.target.parentElement.querySelector('small').classList.add('d-none');
+    console.log("Dato aprovado");
+    elemento.querySelector('small').classList.add('d-none');
     return true;
   } else {
-    e.target.parentElement.querySelector('small').classList.remove('d-none');
+    elemento.querySelector('small').classList.remove('d-none');
     return false;
   }
 }
 
-function verificarEmail(e) {
+function verificarEmail(mail) {
   const EMAIL_REGEX = /^([a-z0-9]+(?:[._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\.[a-z]{2,})$/i;
 
-  let mail = e.target.value;
-
-  if (EMAIL_REGEX.test(mail)) {
-    e.target.parentElement.querySelector('small').classList.add('d-none');
-    return true;
-  } else {
-    e.target.parentElement.querySelector('small').classList.remove('d-none');
-    return false;
-  }
+  // const mail = value;
+  // console.log("el valor del elemento en verificarEmail: ");
+  // console.log(mail);
+  return EMAIL_REGEX.test(mail);
+  // if (EMAIL_REGEX.test(mail)) {
+  //   console.log("Email valido");
+  //   elemento.target.parentElement.querySelector('small').classList.add('d-none');
+  //   return true;
+  // } else {
+  //   elemento.target.parentElement.querySelector('small').classList.remove('d-none');
+  //   return false;
+  // }
 }
 
-function complejidadPassword(e) {
+function complejidadPassword(pass) {
   const PASS_COMPLEX_REGEX = /^[A-Za-z]{4,}$/mg;
   // const PASS_COMPLEX_REGEX = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,18}$/gm;
   // debe contener 1 numero(0-9) + 1 mayuscula + 1 minuscula + 1 simbolo + 8-16 caracteres sin espacios
 
-  let pass = e.target.value;
-
-  if (PASS_COMPLEX_REGEX.test(pass)) {
-    e.target.parentElement.querySelector('small').classList.add('d-none');
-    return true;
-  } else {
-    e.target.parentElement.querySelector('small').classList.remove('d-none');
-    return false;
-  }
+  // const pass = value;
+  // console.log("el valor del elemento en complejidadPassword: ");
+  // console.log(pass);
+  return PASS_COMPLEX_REGEX.test(pass);
+  // if (PASS_COMPLEX_REGEX.test(pass)) {
+  //   console.log("Complejidad dentro de los parametros");
+  //   elemento.target.parentElement.querySelector('small').classList.add('d-none');
+  //   return true;
+  // } else {
+  //   elemento.target.parentElement.querySelector('small').classList.remove('d-none');
+  //   return false;
+  // }
 }
 
-function verificarRePass(e) {
-  e.preventDefault();
-  pass = e.target.querySelector('#pass').value;
-  repass = e.target.querySelector('#repass').value;
+function verificarRepass(password, repassword) {
+  // pass = password;
+  // repass = repassword;
+  // console.log("el valor del elemento del pass en verificarRepass: ");
+  // console.log(pass);
+  // console.log("el valor del elemento del repass en verificarRepass: ");
+  // console.log(repass);
 
-  if (pass == repass) {
-    return true;
-  } else {
-    alert('Las contraseñas no coinciden');
-    return false;
-  }
+  return password === repassword;
 }
 </script>
